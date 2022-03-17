@@ -21,13 +21,13 @@ library(dada2)
 
 
 # load ASV counts
-counts <- read.csv("./RData/Brennaman_all_ASV_counts.csv")
+counts <- read.csv("./RData/ancientTeeth_all_ASV_counts.csv")
 rownames(counts) <- counts$Sample_ID
 counts <- counts[-1]
 
 
 # load taxonomy
-tax <- read.csv("./RData/Brennaman_all_ASV_taxonomy.csv")
+tax <- read.csv("./RData/ancientTeeth_all_ASV_taxonomy.csv")
 
 
 # convert to relative abundance
@@ -35,7 +35,7 @@ relabun <- counts / rowSums(counts)
 
 
 # load sample info
-info <- read.csv("./RData/Brennaman_sample_info.csv")
+info <- read.csv("./RData/ancientTeeth_sample_info.csv")
 
 
 
@@ -229,11 +229,11 @@ uniquesToFasta(teeth_counts.m,
                             teeth_tax$Order, "__",
                             teeth_tax$Family, "__",
                             teeth_tax$Genus),
-               fout = "./RData/Brennaman_teeth_ASVs.fasta")
+               fout = "./RData/ancientTeeth_teeth_ASVs.fasta")
 
 
 # write
 write.csv(data.frame(Sample = rownames(teeth_counts), teeth_counts), 
-          "./Final/Brennaman_teeth_ASV_counts.csv", row.names = F, na = "")
+          "./Final/ancientTeeth_teeth_ASV_counts.csv", row.names = F, na = "")
 
-write.csv(teeth_tax, "./Final/Brennaman_teeth_ASV_taxonomy.csv", row.names = F, na = "")
+write.csv(teeth_tax, "./Final/ancientTeeth_teeth_ASV_taxonomy.csv", row.names = F, na = "")

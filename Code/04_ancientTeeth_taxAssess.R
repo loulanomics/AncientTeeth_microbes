@@ -18,15 +18,15 @@ library(vegan)
 
 
 # load ASV counts
-counts <- read.csv("./Final/Brennaman_teeth_ASVs_counts.csv")
+counts <- read.csv("./Final/ancientTeeth_teeth_ASVs_counts.csv")
 rownames(counts) <- counts$Sample
 counts <- counts[-1]
 
 
 # load taxonomy
-tax <- read.csv("./Final/Brennaman_teeth_ASVs_taxonomy.csv")
+tax <- read.csv("./Final/ancientTeeth_teeth_ASVs_taxonomy.csv")
 
-info <- read.csv("./Final/Brennaman_sample_info.csv")
+info <- read.csv("./Final/ancientTeeth_sample_info.csv")
 
 
 # convert to relative abundance
@@ -274,7 +274,7 @@ bar.plot <-
   labs(y = "Taxa proportion", x = "Sample ID", fill = "Lowest\ntaxonomic\nassignment")
 bar.plot
 
-#ggsave("./Plots/barplot.pdf", plot = bar.plot, device = "pdf", width = 6, height = 7, units = "in")
+ggsave("./Plots/barplot.pdf", plot = bar.plot, device = "pdf", width = 6, height = 7, units = "in")
 
 
 

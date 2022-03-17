@@ -18,7 +18,7 @@
 
 
 # set working directory
-setwd("~/Desktop/Lab/Projects/Others/Brennaman/Metagenome")
+setwd("~/Desktop/Lab/Projects/Others/Brennaman/Final/Metagenome")
 
 
 # packages
@@ -98,11 +98,11 @@ relabun_otu <- data.frame(t(relabun_otu))
 ################
 
 # load ASV taxonomy
-tax_asv <- read.csv("../Amplicon/Final/Brennaman_teeth_ASVs_taxonomy.csv")
+tax_asv <- read.csv("../Amplicon/Final/ancientTeeth_teeth_ASVs_taxonomy.csv")
 
 
 # load ASV counts
-counts_asv <- read.csv("../Amplicon/Final/Brennaman_teeth_ASVs_counts.csv")
+counts_asv <- read.csv("../Amplicon/Final/ancientTeeth_teeth_ASVs_counts.csv")
 rownames(counts_asv) <- counts_asv$Sample
 counts_asv <- counts_asv[-1]
 
@@ -118,7 +118,7 @@ relabun_asv <- counts_asv / rowSums(counts_asv)
 ################
 
 # load sample metadata
-info <- read.csv("../Amplicon/Final/Brennaman_sample_info.csv")
+info <- read.csv("../Amplicon/Final/ancientTeeth_sample_info.csv")
 
 
 # change metagenome file names to sample names
@@ -459,6 +459,6 @@ teeth_tax_otu <- subset(tax_otu, OTU %in% teeth.df$OTU)
 
 
 # write
-write.csv(teeth_relabun_otu, "./RData/Brennaman_teeth_OTU_relabun.csv", row.names = F, na = "")
-write.csv(teeth_tax_otu, "./RData/Brennaman_teeth_OTU_taxonomy.csv", row.names = F, na = "")
+write.csv(teeth_relabun_otu, "./RData/ancientTeeth_teeth_OTU_relabun.csv", row.names = F, na = "")
+write.csv(teeth_tax_otu, "./RData/ancientTeeth_teeth_OTU_taxonomy.csv", row.names = F, na = "")
 

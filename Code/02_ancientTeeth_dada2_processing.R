@@ -348,14 +348,14 @@ NTC_contaminants$Source <- "NTC"
 # save as fasta
 uniquesToFasta(Sequence_table_nochim,
                ids = paste0("NOCHIM", sprintf("%06d", 1:ncol(Sequence_table_nochim))), 
-               fout = "./RData/Brennaman_wMock.fasta")
+               fout = "./RData/ancientTeeth_wMock.fasta")
 
 
 # in terminal:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # $ makeblastdb -dbtype nucl -in zymo_mock_all.fasta -input_type fasta
 #
-# $ blastn -db zymo_mock_all.fasta -query Brennaman_wMock.fasta -task blastn -perc_identity 100 -outfmt 6 -out mock_align_nochim.txt
+# $ blastn -db zymo_mock_all.fasta -query ancientTeeth_wMock.fasta -task blastn -perc_identity 100 -outfmt 6 -out mock_align_nochim.txt
 #
 # $ echo -e "qseqid\tsseqid\tpident\tlength\tmismatch\tgapopen\tqstart\tqend\tsstart\tsend\tevalue\tbitscore\n$(cat mock_align_nochim.txt)" > mock_align_nochim.txt
 #
@@ -435,7 +435,7 @@ uniquesToFasta(as.matrix(counts.df),
                             taxa.df$Order, "__",
                             taxa.df$Family, "__",
                             taxa.df$Genus),
-               fout = "./RData/Brennaman_v4_wSoil.fasta")
+               fout = "./RData/ancientTeeth_all_ASV.fasta")
 
 
 # change ASVs in counts
@@ -458,7 +458,7 @@ contaminants <- rbind(contaminants, empties)
 
 
 # also change sample names
-info <- read.csv("./RData/Brennaman_sample_info.csv")
+info <- read.csv("./RData/ancientTeeth_sample_info.csv")
 info$File_name <- gsub("-", "_", info$File_name)
 identical(info$File_name, rownames(counts.df))
 rownames(counts.df) <- info$Sample_ID
@@ -466,9 +466,9 @@ counts.df <- data.frame(Sample_ID = rownames(counts.df), counts.df)
 
 
 # save
-write.csv(contaminants, "./RData/Brennaman_contaminats.csv", na = "", row.names = F)
-write.csv(counts.df, "./RData/Brennaman_all_ASV_counts.csv", row.names = F, na = "")
-write.csv(taxa.df[c(1,3:8,2)], "./RData/Brennaman_all_ASV_taxaonomy.csv", row.names = F, na = "")
+write.csv(contaminants, "./RData/ancientTeeth_contaminats.csv", na = "", row.names = F)
+write.csv(counts.df, "./RData/ancientTeeth_all_ASV_counts.csv", row.names = F, na = "")
+write.csv(taxa.df[c(1,3:8,2)], "./RData/ancientTeeth_all_ASV_taxaonomy.csv", row.names = F, na = "")
 
 
 
