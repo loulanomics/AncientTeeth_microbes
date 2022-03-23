@@ -4,7 +4,7 @@
 ### for ancient teeth microbe study
 ### with Ashley Brennaman
 ### Lou LaMartina, start Mar 16 2022
-############################################
+##################################################
 
 # notes:
 #   "OTU" refers to clades assigned with metaphlan from metagenomic data.
@@ -98,11 +98,11 @@ relabun_otu <- data.frame(t(relabun_otu))
 ################
 
 # load ASV taxonomy
-tax_asv <- read.csv("../Amplicon/Final/ancientTeeth_teeth_ASVs_taxonomy.csv")
+tax_asv <- read.csv("../Amplicon/Final/ancientTeeth_teeth_ASV_taxonomy.csv")
 
 
 # load ASV counts
-counts_asv <- read.csv("../Amplicon/Final/ancientTeeth_teeth_ASVs_counts.csv")
+counts_asv <- read.csv("../Amplicon/Final/ancientTeeth_teeth_ASV_counts.csv")
 rownames(counts_asv) <- counts_asv$Sample
 counts_asv <- counts_asv[-1]
 
@@ -179,6 +179,7 @@ ubiq.df <- indic_all.df[is.na(indic_all.df$p.value),]
 
 # remove those
 indic.df <- indic_all.df[is.na(indic_all.df$p.value) == FALSE,]
+#write.csv(indic.df, "./RData/shotgun_indic_results.csv", row.names = F, na = "")
 
 
 # check i got them all
@@ -399,7 +400,7 @@ ggsave("./Plots/phyla compare.pdf", plot = data.plot, device = "pdf", width = 6,
 
 
 
-###############
+################
 ### stats & plot
 
 # spearman rho
@@ -425,7 +426,7 @@ ranks$Sum[ranks$Data == "Amplicon"] <- ranks$Sum[ranks$Data == "Amplicon"] * mul
 # plot
 rank.plot <-
   ggplot(ranks, aes(x = Top, y = Sum, fill = Data)) +
-  geom_bar(stat="identity", position = position_dodge()) +
+  geom_bar(stat = "identity", position = position_dodge()) +
   scale_y_continuous(sec.axis = sec_axis(~ . / mult,
                                          name = "Amplicon sum relative abundance")) +
   theme_classic() +
@@ -459,6 +460,6 @@ teeth_tax_otu <- subset(tax_otu, OTU %in% teeth.df$OTU)
 
 
 # write
-write.csv(teeth_relabun_otu, "./RData/ancientTeeth_teeth_OTU_relabun.csv", row.names = F, na = "")
-write.csv(teeth_tax_otu, "./RData/ancientTeeth_teeth_OTU_taxonomy.csv", row.names = F, na = "")
+write.csv(teeth_relabun_otu, "./RData/Brennaman_teeth_OTU_relabun.csv", row.names = F, na = "")
+write.csv(teeth_tax_otu, "./RData/Brennaman_teeth_OTU_taxonomy.csv", row.names = F, na = "")
 
